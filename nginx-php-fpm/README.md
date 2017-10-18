@@ -1,5 +1,8 @@
 # 基于php:7.1-fpm 增加php扩展 并安装nginx
 
+### 构建
+docker build -t nginx-php-fpm:latest .
+
 ### 配置目录
 
 nginx站点目录   /usr/share/nginx/html \
