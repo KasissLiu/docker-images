@@ -57,7 +57,7 @@ RUN cd /tmp \
     && rm -rf /tmp/${PHP_EXT_YAF}* 
 #安装nginx
 RUN apt-get update && apt-get install -y nginx
-
+ADD localhost.conf /etc/nginx/conf.d/localhost.conf
 ADD run.sh /run.sh
 #载入命令
 RUN chmod -R 755 /run.sh
