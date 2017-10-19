@@ -3,6 +3,14 @@
 ### 构建
 docker build -t nginx-php-fpm:latest .
 
+### dockerHub下载
+docker pull kasiss/nginx-php
+
+### dockerHub 地址
+```
+<a href="https://hub.docker.com/r/kasiss/nginx-php/">kasiss/nginx-php</a>
+```
+
 ### 配置目录
 
 nginx站点目录   /usr/share/nginx/html \
