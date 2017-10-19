@@ -12,5 +12,5 @@ nginx配置目录 /etc/nginx
 php配置目录 /etc/php
 
 mariadb配置 /etc/my.conf
-mariadb存储目录 /usr/var/mysql
+mariadb存储目录 /var/lib/mysql
 
