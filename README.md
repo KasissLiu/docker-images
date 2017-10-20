@@ -1,4 +1,4 @@
-# docker-study
+# docker-images
 进入项目文件夹内<br>
 执行
 docker build -t image-name:tag .<br>
