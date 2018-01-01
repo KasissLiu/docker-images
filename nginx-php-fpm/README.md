@@ -23,5 +23,5 @@ php-fpm配置扩展 /usr/local/etc/php-fpm.d
 
 ### 启动命令
 
-docker  run -d --name myproject -p [local port]:80 -v[local path]:/usr/share/nginx/html [-v [nginx config path]:/etc/nginx/conf.d] nginx-php-fpm
+docker  run -d --name myproject -p [local port]:80 -v[local path]:/var/www/html [-v [nginx config path]:/etc/nginx/conf.d] kasiss/nginx-php
 
