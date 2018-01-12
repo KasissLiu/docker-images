@@ -55,7 +55,7 @@ RUN cd /tmp \
     && tar -xf ${PHP_EXT_YAF}.tgz -C /tmp/$PHP_EXT_YAF --strip-components=1 \
     && docker-php-ext-install /tmp/$PHP_EXT_YAF \
     && rm -rf /tmp/${PHP_EXT_YAF}* \
-    && pecl download PHP_EXT_REDIS \
+    && pecl download $PHP_EXT_REDIS \
     && mkdir -p /tmp/$PHP_EXT_REDIS \
     && tar -xf ${PHP_EXT_REDIS}.tgz -C /tmp/$PHP_EXT_REDIS --strip-components=1 \
     && docker-php-ext-install /tmp/$PHP_EXT_REDIS \
