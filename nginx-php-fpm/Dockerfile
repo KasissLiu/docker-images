@@ -1,5 +1,5 @@
 #基于php7.1-fpm镜像
-FROM php:7.1-fpm
+FROM php:7.0-fpm
 #作者
 MAINTAINER kasiss "xueyezhishang@163.com"
 
@@ -41,8 +41,8 @@ RUN apt-get update && apt-get install -y \
     	&& docker-php-ext-install -j$(nproc) openssl) \    
     && docker-php-source delete 
 #定义swoole和yaf版本号常量
-ENV PHP_EXT_SWOOLE=swoole-1.9.21 PHP_EXT_YAF=yaf-3.0.5
-#下载安装swoole 和yaf
+ENV PHP_EXT_SWOOLE=swoole-1.9.21 PHP_EXT_YAF=yaf-3.0.5 PHP_EXT_REDIS=redis-3.1.6
+#下载安装swoole yaf redis
 RUN cd /tmp \
     && pecl download $PHP_EXT_SWOOLE \
     && mkdir -p /tmp/$PHP_EXT_SWOOLE \
@@ -54,7 +54,14 @@ RUN cd /tmp \
     && mkdir -p /tmp/$PHP_EXT_YAF \
     && tar -xf ${PHP_EXT_YAF}.tgz -C /tmp/$PHP_EXT_YAF --strip-components=1 \
     && docker-php-ext-install /tmp/$PHP_EXT_YAF \
-    && rm -rf /tmp/${PHP_EXT_YAF}* 
+    && rm -rf /tmp/${PHP_EXT_YAF}* \
+    && pecl download PHP_EXT_REDIS \
+    && mkdir -p /tmp/$PHP_EXT_REDIS \
+    && tar -xf ${PHP_EXT_REDIS}.tgz -C /tmp/$PHP_EXT_REDIS --strip-components=1 \
+    && docker-php-ext-install /tmp/$PHP_EXT_REDIS \
+    && rm -rf /tmp/$PHP_EXT_REDIS \
+    && docker-php-source delete
+
 #安装nginx
 RUN apt-get update && apt-get install -y nginx
 ADD localhost.conf /etc/nginx/conf.d/localhost.conf
