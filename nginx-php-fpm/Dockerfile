@@ -1,4 +1,4 @@
-#基于php7.1-fpm镜像
+#基于php7.0-fpm镜像
 FROM php:7.0-fpm
 #作者
 MAINTAINER kasiss "xueyezhishang@163.com"
@@ -59,7 +59,7 @@ RUN cd /tmp \
     && mkdir -p /tmp/$PHP_EXT_REDIS \
     && tar -xf ${PHP_EXT_REDIS}.tgz -C /tmp/$PHP_EXT_REDIS --strip-components=1 \
     && docker-php-ext-install /tmp/$PHP_EXT_REDIS \
-    && rm -rf /tmp/$PHP_EXT_REDIS \
+    && rm -rf /tmp/${PHP_EXT_REDIS}* \
     && docker-php-source delete
 
 #安装nginx
