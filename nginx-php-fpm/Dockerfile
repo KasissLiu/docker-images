@@ -1,9 +1,9 @@
 #基于php7.0-fpm镜像
 FROM php:7.0-fpm
 #作者
-MAINTAINER kasiss "xueyezhishang@163.com"
+LABEL author="kasiss"
+LABEL email="xueyezhishang@163.com"
 
-CMD ["bash"]
 #安装基础扩展
 RUN docker-php-ext-install -j$(nproc) mbstring \
     && docker-php-ext-install -j$(nproc) tokenizer \
