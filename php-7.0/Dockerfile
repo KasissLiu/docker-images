@@ -1,5 +1,6 @@
 FROM php:7.0
-MAINTAINER kasiss "xueyezhishang@163.com"
+LABEL author="kasiss"
+LABEL email="xueyezhishang@163.com"
 
 RUN docker-php-ext-install -j$(nproc) mbstring \
     && docker-php-ext-install -j$(nproc) tokenizer \

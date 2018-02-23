@@ -1,5 +1,6 @@
 FROM centos:latest
-MAINTAINER kasiss "xueyezhishang@163.com"
+LABEL author="kasiss"
+LABEL email="xueyezhishang@163.com"
 #添加软件源
 ADD extends.repo /etc/yum.repos.d/extends.repo
 
