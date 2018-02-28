@@ -41,25 +41,34 @@ RUN apt-get update && apt-get install -y \
     	&& docker-php-ext-install -j$(nproc) openssl) \    
     && docker-php-source delete 
 #定义swoole和yaf版本号常量
-ENV PHP_EXT_SWOOLE=swoole-1.9.21 PHP_EXT_YAF=yaf-3.0.5 PHP_EXT_REDIS=redis-3.1.6
+ENV PHP_EXT_SWOOLE=swoole-2.1.0 PHP_EXT_YAF=yaf-3.0.5 PHP_EXT_REDIS=redis-3.1.6 PHP_EXT_MONGO=mongodb-1.4.1
 #下载安装swoole yaf redis
 RUN cd /tmp \
-    && pecl download $PHP_EXT_SWOOLE \
+#    && pecl download $PHP_EXT_SWOOLE \
+    && curl -O http://pecl.php.net/get/${PHP_EXT_SWOOLE}.tgz \
     && mkdir -p /tmp/$PHP_EXT_SWOOLE \
     && tar -xf ${PHP_EXT_SWOOLE}.tgz -C /tmp/$PHP_EXT_SWOOLE --strip-components=1 \
     && docker-php-ext-configure /tmp/$PHP_EXT_SWOOLE  --enable-openssl \
     && docker-php-ext-install /tmp/$PHP_EXT_SWOOLE \
     && rm -rf /tmp/${PHP_EXT_SWOOLE}* \
-    && pecl download  $PHP_EXT_YAF \
+#    && pecl download  $PHP_EXT_YAF \
+    && curl -O http://pecl.php.net/get/${PHP_EXT_YAF}.tgz \
     && mkdir -p /tmp/$PHP_EXT_YAF \
     && tar -xf ${PHP_EXT_YAF}.tgz -C /tmp/$PHP_EXT_YAF --strip-components=1 \
     && docker-php-ext-install /tmp/$PHP_EXT_YAF \
     && rm -rf /tmp/${PHP_EXT_YAF}* \
-    && pecl download $PHP_EXT_REDIS \
+#    && pecl download $PHP_EXT_REDIS \
+    && curl -O http://pecl.php.net/get/${PHP_EXT_REDIS}.tgz \
     && mkdir -p /tmp/$PHP_EXT_REDIS \
     && tar -xf ${PHP_EXT_REDIS}.tgz -C /tmp/$PHP_EXT_REDIS --strip-components=1 \
     && docker-php-ext-install /tmp/$PHP_EXT_REDIS \
     && rm -rf /tmp/${PHP_EXT_REDIS}* \
+#    && pecl download $PHP_EXT_MONGO \
+    && curl -O http://pecl.php.net/get/${PHP_EXT_MONGO}.tgz \
+    && mkdir -p /tmp/$PHP_EXT_MONGO \
+    && tar -xf ${PHP_EXT_MONGO}.tgz -C /tmp/$PHP_EXT_MONGO --strip-components=1 \
+    && docker-php-ext-install /tmp/$PHP_EXT_MONGO \
+    && rm -rf /tmp/${PHP_EXT_MONGO}* \
     && docker-php-source delete
 
 #安装nginx
