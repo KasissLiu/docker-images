@@ -1,4 +1,4 @@
-# 基于php:7.1-fpm 增加php扩展 并安装nginx
+# 基于php:7.0-fpm 增加php扩展 并安装nginx
 
 ### 构建
 docker build -t nginx-php-fpm:latest .
